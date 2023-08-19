@@ -1,9 +1,18 @@
+version: '3.1'
+
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+  postgresql:
+    image: postgres
+    container_name: pg_container
+    restart: always
     ports:
-      - '5432'
+      - "5444:5432"
+    volumes:
+      - mydata:/home/db/data/postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: consultants
+
+volumes:
+  mydata: {}
